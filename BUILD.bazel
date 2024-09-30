@@ -1,0 +1,18 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary")
+
+rust_binary(
+  name = "good",
+  srcs = ["empty.rs"],
+  deps = [
+    "@crates//:rust_decimal",
+    #"@crates//:pq-sys", # also works
+  ],
+)
+
+rust_binary(
+  name = "bad",
+  srcs = ["empty.rs"],
+  proc_macro_deps = [
+    "@crates//:rust_decimal_macros",
+  ],
+)
